@@ -8,6 +8,7 @@ import useInput from "@/hooks/input-hook";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { router } from "expo-router";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
+import useAuth from "@/hooks/auth-hooks";
 
 export default function Register() {
   const {
@@ -22,7 +23,7 @@ export default function Register() {
     handlePasswordText,
     handlePasswordError,
   } = useInput();
-
+  const { handleSignIn } = useAuth()
   return (
     <Container style={styles.container} lightColor="#FFFCFC" back>
       <ThemedText type="title" style={{ marginTop: 10 }}>
@@ -58,7 +59,7 @@ export default function Register() {
         </TouchableOpacity>
         <Button
           text="LOG IN"
-          onPress={() => console.log("Hii")}
+          onPress={()=>handleSignIn(email, password)}
           style={styles.button}
         />
       </View>

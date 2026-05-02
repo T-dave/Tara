@@ -30,7 +30,7 @@ export default function OnboardScreen(){
     const navigation = useRouter();
     const finishOnboarding = async () => {
         setIsLoading(true);
-        navigation.navigate("/auth");
+        navigation.replace("/auth");
         // try {
         // await AsyncStorage.setItem("onboardingSeen", "true");
         // setIsLoading(false);

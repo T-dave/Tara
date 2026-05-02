@@ -53,6 +53,50 @@ export default function useInput(){
         else setPasswordError("");
     }
 
+    // const handleSignUp = ()=>{
+    //     if(name && email){
+    //         setLoading(true);
+    //         createUserWithEmailAndPassword(auth, email, password)
+    //         .then((userCredential) => {
+    //             // Signed up 
+    //             const user = userCredential.user;
+    //             console.log(user)
+    //             setLoading(false);
+    //             router.navigate("/(tabs)");
+    //             // ...
+    //         })
+    //         .catch((error) => {
+    //             const errorCode = error.code;
+    //             const errorMessage = error.message;
+    //             console.error(errorCode, errorMessage);
+    //             setLoading(false);
+    //             // ..
+    //         });
+    //     }
+    // }
+
+    // const handleLogin = ()=>{
+    //     if(password && email){
+    //         setLoading(true);
+    //         signInWithEmailAndPassword(auth, email, password)
+    //         .then((userCredential) => {
+    //             // Signed in 
+    //             const user = userCredential.user;
+    //             console.log(user)
+    //             setLoading(false);
+    //             router.navigate("/(tabs)");
+    //             // ...
+    //         })
+    //         .catch((error) => {
+    //             const errorCode = error.code;
+    //             const errorMessage = error.message;
+    //             console.error(errorCode, errorMessage);
+    //             setLoading(false);
+    //             // ..
+    //         });
+    //     }
+    // }
+
     return {
         name,
         nameError,
@@ -69,6 +113,6 @@ export default function useInput(){
         passwordError,
         setPasswordError,
         handlePasswordText,
-        handlePasswordError
+        handlePasswordError,
     }
 }
