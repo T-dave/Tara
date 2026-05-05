@@ -12,7 +12,7 @@ interface ContainerProps extends ScrollViewProps{
 export default function Container({lightColor, darkColor, style, back, children}:ContainerProps){
     const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
     return(
-        <ScrollView style={ {backgroundColor} } contentContainerStyle={{flexGrow:1}}>
+        <ScrollView style={ {backgroundColor} } contentContainerStyle={{flexGrow:1}} showsVerticalScrollIndicator={false}>
             <SafeAreaView style={styles.container}>
                 {
                     back &&

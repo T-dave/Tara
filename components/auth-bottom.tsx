@@ -1,17 +1,15 @@
 import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { ThemedText } from "./themed-text";
 import { ThemedView } from "./themed-view";
-import useAuth from "@/hooks/auth-hooks";
 
 export default function Bottom({type}:{type:string}){
-    const { googleAuth } = useAuth();
     return(
             <View style={styles.bottom}>
                 <ThemedText>
                     Or {type} with social account
                 </ThemedText>
                 <View style={styles.socials}>
-                    <TouchableOpacity onPress={googleAuth}>
+                    <TouchableOpacity>
                         <ThemedView style={styles.socialView}>
                             <Image source={require("../assets/images/googlePic.png")} style={styles.social} resizeMode="contain"/>
                         </ThemedView>
