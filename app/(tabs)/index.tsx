@@ -1,17 +1,18 @@
-import { Image } from 'expo-image';
 import { ActivityIndicator, ImageBackground, StyleSheet, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
 import Container from '@/components/custom-component';
 import Button from '@/components/custom-button';
 import { usePictures } from '@/hooks/pictures-hook';
-import New from '@/components/new';
+import ProductsSection from '@/components/products-section';
+import Categories from '@/components/categories';
+import { useEffect } from 'react';
+import NewCollection from '@/components/new-collection';
 
 export default function HomeScreen() {
-  const { pictures } = usePictures();
+  const { pictures, newProducts, banner } = usePictures();
   return (
-    <Container style={styles.container}>
+    <Container style={styles.container} edges={['bottom']}>
       {
         pictures ?
         <ImageBackground source={{uri:pictures.banner}} style={styles.banner}>
@@ -29,7 +30,23 @@ export default function HomeScreen() {
           <ActivityIndicator size={50}/>
         </View>
       }
-      <New/>
+      <ProductsSection
+      title='New'
+      description="You've never seen it before"
+      type='new'
+      data={newProducts}
+      />
+
+      <Categories data={banner[0]}/>
+
+      <ProductsSection
+      title='Sale'
+      description="Super summer sale"
+      type='sale'
+      data={newProducts}
+      />
+
+      <NewCollection image={pictures.newCollection} title='New Collection'/>
     </Container>
   );
 }

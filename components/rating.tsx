@@ -22,12 +22,12 @@ export default function Rating({rating, review}:RatingProps){
                 {Array.from({ length: 5 }).map((_, index) => (
                     <MaterialIcons 
                     name={index < ratingNumber ? "star" : "star-outline"} 
-                    color={'yellow'}
-                    size={15}
+                    color={'#FFBA49'}
+                    size={14}
                     key={index}
                     />
                 ))}
-                <ThemedText type="small" style={{marginLeft:5}}>
+                <ThemedText type="small" style={{marginLeft:5, fontSize:12}} lightColor="gray">
                     ({review})
                 </ThemedText>
             </View>

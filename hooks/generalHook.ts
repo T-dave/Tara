@@ -12,7 +12,7 @@ export default function useHook() {
   const savings = (oldPrice: string, newPrice: string)=>{
     const oldNum = Number(oldPrice);
     const newNum = Number(newPrice);
-    return Math.round(((newNum - oldNum) / newNum) * 100)
+    return Math.round(((oldNum - newNum) / oldNum) * 100)
   }
   const collectionData = async (collection:string) => {
     try {

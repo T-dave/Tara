@@ -1,20 +1,22 @@
 import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 import { ThemedText } from "./themed-text";
 import Product from "./product";
-import { usePictures } from "@/hooks/pictures-hook";
-import useHook from "@/hooks/generalHook";
-import { useEffect } from "react";
 
-export default function New(){
-    const { newProducts } = usePictures();
-    const { savings } = useHook();
-    // const savingsPercent = savings(newProducts.product2.oldPrice, newProducts.product2.newPrice);
+interface NewProps{
+    title: string;
+    description: string;
+    type: string;
+    data: any;
+}
+
+export default function ProductsSection({title, description, type, data}:NewProps){
+    
     return (
         <View style={styles.container}>
             <View style={styles.top}>
                 <View>
-                    <ThemedText type="title">New</ThemedText>
-                    <ThemedText>You&apos;ve never seen it before</ThemedText>
+                    <ThemedText type="title">{title}</ThemedText>
+                    <ThemedText>{description}</ThemedText>
                 </View>
                 <TouchableOpacity>
                     <ThemedText type="small">View all</ThemedText>
@@ -23,19 +25,20 @@ export default function New(){
             <View style={styles.products}>
                 <FlatList
                 keyExtractor={(item, i)=>i.toString()}
-                data={newProducts}
+                data={data}
                 horizontal
                 showsHorizontalScrollIndicator={false}  
-                renderItem={({item})=>(
+                renderItem={({item, index})=>(
                     <Product 
-                        type="new" 
+                        type={type}
                         image={item.image}
-                        style={{marginLeft:20}}
+                        style={[styles.product, {marginRight:index === data.length-1 ? 20 : 0}]}
                         company={item.company}
                         name={item.name}
                         rating={item.rating}
                         review={item.review}
                         newPrice={item.newPrice}
+                        oldPrice={item.oldPrice}
                     />
                 )}
                 />
@@ -57,5 +60,9 @@ const styles = StyleSheet.create({
     },
     products:{
         flexDirection:'row',
+    },
+    product:{
+        marginLeft:20,
+        width:145
     }
 });
