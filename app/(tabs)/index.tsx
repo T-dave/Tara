@@ -1,4 +1,4 @@
-import { ActivityIndicator, ImageBackground, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Dimensions, ImageBackground, StyleSheet, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import Container from '@/components/custom-component';
@@ -6,13 +6,13 @@ import Button from '@/components/custom-button';
 import { usePictures } from '@/hooks/pictures-hook';
 import ProductsSection from '@/components/products-section';
 import Categories from '@/components/categories';
-import { useEffect } from 'react';
-import NewCollection from '@/components/new-collection';
+import Promo from '@/components/promo';
 
+const { height } = Dimensions.get("window");
 export default function HomeScreen() {
-  const { pictures, newProducts, banner } = usePictures();
+  const { pictures, products, banner } = usePictures();
   return (
-    <Container style={styles.container} edges={['bottom']}>
+    <Container style={styles.container} edges={['bottom']} lightColor="#FFFCFC">
       {
         pictures ?
         <ImageBackground source={{uri:pictures.banner}} style={styles.banner}>
@@ -34,19 +34,18 @@ export default function HomeScreen() {
       title='New'
       description="You've never seen it before"
       type='new'
-      data={newProducts}
+      data={products.New}
       />
-
-      <Categories data={banner[0]}/>
-
+      <Categories data={banner}/>
       <ProductsSection
       title='Sale'
       description="Super summer sale"
       type='sale'
-      data={newProducts}
+      data={products.Sale}
       />
-
-      <NewCollection image={pictures.newCollection} title='New Collection'/>
+      <View style={styles.promo}>
+        <Promo/>
+      </View>
     </Container>
   );
 }
@@ -69,5 +68,8 @@ const styles = StyleSheet.create({
     paddingHorizontal:15,
     backgroundColor:"#00000030",
     paddingBottom:25
-  }
+  },
+  promo:{
+    height
+  },
 });

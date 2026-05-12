@@ -7,7 +7,7 @@ import { usePictures } from "@/hooks/pictures-hook";
 import useHook from "@/hooks/generalHook";
 
 export default function IndexScreen(){
-    const { setNew, setPictures, setBan } = usePictures();
+    const { setPictures, setBan, setProducts } = usePictures();
     const { collectionData } = useHook();
     useEffect(()=>{
         const load = async()=>{
@@ -15,12 +15,12 @@ export default function IndexScreen(){
             const user = await AsyncStorage.getItem("user");
             if(onboard === "true"){
                 if(user){
-                    const newData = await collectionData('new');
                     const picturesData = await collectionData('pictures');
                     const bannerData = await collectionData('banner');
-                    setNew(newData ?? []);
+                    const productsData = await collectionData('products');
+                    setProducts(productsData ?? []);
                     setPictures(picturesData ?? []);
-                    setBan(bannerData ?? []);
+                    setBan(bannerData?.banner ?? []);
                     router.replace("/(tabs)");
                 }else{
                     router.replace("/auth")

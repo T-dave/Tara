@@ -1,7 +1,7 @@
 import { Dimensions, FlatList, ImageBackground, ImageBackgroundProps, StyleSheet, View } from "react-native";
 import { ThemedText } from "./themed-text";
 import { useEffect, useRef, useState } from "react";
-import { router } from "expo-router";
+import { PictureCard2 } from "./picture-card";
 
 interface CategoriesProps extends ImageBackgroundProps{
     data: any;
@@ -54,28 +54,8 @@ export default function Categories({style, data}:CategoriesProps){
         })}
         ref={flatListRef}
         renderItem={({item})=>
-        <ImageBackground source={{uri: item.image}} style={[styles.image, style]}>
-            <View style={styles.inner}>
-                <ThemedText type='title' style={styles.title}>{item.title}</ThemedText>
-            </View>
-        </ImageBackground>
+            <PictureCard2 image={item.image} title={item.title} style={style}/>
         }
         />
     )
 }
-
-const styles = StyleSheet.create({
-    inner:{
-        backgroundColor:'#00000033',
-        flex:1,
-        justifyContent:'flex-end',
-        padding:20
-    },
-    image:{
-        height:250,
-        width
-    },
-    title:{
-        color:'#FFF',
-    }
-});

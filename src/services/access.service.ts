@@ -19,7 +19,6 @@ export const AccessService = {
     if (!snap.exists()) return null;
 
     return {
-      id: snap.id,
       ...snap.data()
     };
   }
