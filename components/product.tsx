@@ -8,7 +8,8 @@ import { useState } from "react";
 import useHook from "@/hooks/generalHook";
 
 interface ProductType extends ViewProps{
-    type: string;
+    type?: string;
+    sale?:boolean;
     image: string;
     company:string;
     name:string;
@@ -17,7 +18,7 @@ interface ProductType extends ViewProps{
     newPrice:string;
     oldPrice:string;
 }
-export default function Product({type, image, style, company, name, rating, review, newPrice, oldPrice}:ProductType){
+export default function Product({type, image, style, company, name, rating, review, newPrice, oldPrice, sale}:ProductType){
     const [liked, setLiked] = useState(false);
     const { savings } = useHook();
     const savingsPercent = savings(oldPrice, newPrice);
@@ -36,7 +37,7 @@ export default function Product({type, image, style, company, name, rating, revi
                             <ThemedText style={{color:'#FFF'}} type="small">New</ThemedText>
                         </View>
                         :
-                        <></>
+                        <View/>
                     }
                     <TouchableOpacity onPress={()=>setLiked((liked)=>!liked)}>
                         <ThemedView style={styles.likeView}>
@@ -55,7 +56,7 @@ export default function Product({type, image, style, company, name, rating, revi
             <ThemedText style={{fontWeight:'700'}}>{name}</ThemedText>
             <View style={styles.prices}>
                 {
-                    type === 'sale' && Number(oldPrice) > Number(newPrice) &&
+                    (type === 'sale' && Number(oldPrice) > Number(newPrice)) || sale &&
                     <ThemedText style={[styles.text, styles.oldPrice]} lightColor="grey">${oldPrice}</ThemedText>
                 }
                 <ThemedText style={styles.text} lightColor={Colors.primary}>${newPrice}</ThemedText>

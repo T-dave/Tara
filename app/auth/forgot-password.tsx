@@ -16,15 +16,16 @@ export default function Register() {
   } = useInput();
 
   return (
-    <Container style={styles.container} lightColor="#FFFCFC" back>
+    <Container style={styles.container} back>
       <ThemedText type="title" style={{ marginTop: 10 }}>
         Forgot Password
       </ThemedText>
       <View>
         <View style={styles.inputs}>
-            <ThemedText type="small" style={{marginBottom:10}}>
-                Please, enter your email address. You will receive a link to create a new password via email.
-            </ThemedText>
+          <ThemedText type="small" style={{ marginBottom: 10 }}>
+            Please, enter your email address. You will receive a link to create
+            a new password via email.
+          </ThemedText>
           <Input
             label="Email"
             value={email}
@@ -32,7 +33,7 @@ export default function Register() {
             setError={setEmailError}
             handleError={handleEmailError}
             handleText={handleEmailText}
-            clear={()=>setEmail("")}
+            clear={() => setEmail("")}
           />
         </View>
         <Button
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   inputs: {
-    marginTop:40
+    marginTop: 40,
   },
   logIn: {
     flexDirection: "row",

@@ -4,11 +4,11 @@ import Container from "@/components/custom-component";
 import Input from "@/components/custom-input";
 import { ThemedText } from "@/components/themed-text";
 import { Colors } from "@/constants/theme";
+import useAuth from "@/hooks/auth-hooks";
 import useInput from "@/hooks/input-hook";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { router } from "expo-router";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
-import useAuth from "@/hooks/auth-hooks";
 
 export default function Register() {
   const {
@@ -23,9 +23,9 @@ export default function Register() {
     handlePasswordText,
     handlePasswordError,
   } = useInput();
-  const { handleSignIn } = useAuth()
+  const { handleSignIn } = useAuth();
   return (
-    <Container style={styles.container} lightColor="#FFFCFC" back>
+    <Container style={styles.container} back>
       <ThemedText type="title" style={{ marginTop: 10 }}>
         Log In
       </ThemedText>
@@ -49,7 +49,10 @@ export default function Register() {
             password
           />
         </View>
-        <TouchableOpacity style={styles.logIn} onPress={()=>router.navigate("/auth/forgot-password")}>
+        <TouchableOpacity
+          style={styles.logIn}
+          onPress={() => router.navigate("/auth/forgot-password")}
+        >
           <ThemedText>Forgot your password?</ThemedText>
           <MaterialIcons
             name="arrow-forward"
@@ -59,7 +62,7 @@ export default function Register() {
         </TouchableOpacity>
         <Button
           text="LOG IN"
-          onPress={()=>handleSignIn(email, password)}
+          onPress={() => handleSignIn(email, password)}
           style={styles.button}
         />
       </View>
